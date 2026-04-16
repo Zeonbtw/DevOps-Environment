@@ -3,11 +3,11 @@
 This project sets up a local DevOps environment using Vagrant with integrated services and monitoring.
 
 The environment includes:
- • Jenkins (CI/CD)
- • Vault (secrets management)
- • Zabbix (monitoring)
- • Apache (reverse proxy)
- • MariaDB (database)
+• Jenkins (CI/CD)
+• Vault (secrets management)
+• Zabbix (monitoring)
+• Apache (reverse proxy)
+• MariaDB (database)
 
 ⸻
 
@@ -21,15 +21,14 @@ To re-run provisioning:
 
 vagrant provision
 
-
 ⸻
 
 🌐 Access
 
 Services are available via local domains:
- • Jenkins → http://jenkins.local
- • Zabbix → http://zabbix.local
- • Vault → http://vault.local:8200
+- Jenkins → http://jenkins.local
+- Zabbix → http://zabbix.local
+- Vault → http://vault.local:8200
 
 ⸻
 
@@ -37,27 +36,26 @@ Services are available via local domains:
 
 Add this to your host machine (/etc/hosts):
 
-192.168.60.10 zabbix.local
-192.168.60.10 jenkins.local
-192.168.60.10 vault.local
-
+- 192.168.60.10 zabbix.local
+- 192.168.60.10 jenkins.local
+- 192.168.60.10 vault.local
 
 ⸻
 
 🧱 Architecture
- • Jenkins runs in Docker (port 8080)
- • Vault runs in development mode (port 8200)
- • Zabbix server + frontend installed on VM
- • MariaDB used as Zabbix database
- • Apache used as reverse proxy
+- Jenkins runs in Docker (port 8080)
+- Vault runs in development mode (port 8200)
+- Zabbix server + frontend installed on VM
+- MariaDB used as Zabbix database
+- Apache used as reverse proxy
 
 Routing:
- • jenkins.local → proxy to 127.0.0.1:8080
- • zabbix.local → Zabbix frontend
- • Vault → direct access (no proxy)
+- jenkins.local → proxy to 127.0.0.1:8080
+- zabbix.local → Zabbix frontend
+- Vault → direct access (no proxy)
 
 Without proxy:
- • Jenkins → http://jenkins.local:8080
+- Jenkins → http://jenkins.local:8080
 
 ⸻
 
@@ -72,22 +70,22 @@ Vault runs in development mode, so it is already initialized and unsealed.
 ⸻
 
 Login
- • Select authentication method: Token
- • Enter:
+- Select authentication method: Token
+- Enter:
 
 root
 
- • Click Sign In
+- Click Sign In
 
 ⸻
 
 Create a secret
- • Go to Secrets → KV → Create secret
- • Path: myapp
- • Add key/value:
- • username: admin
- • password: 1234
- • Click Save
+- Go to Secrets → KV → Create secret
+- Path: myapp
+- Add key/value:
+- username: admin
+- password: 1234
+- Click Save
 
 ⸻
 
@@ -96,7 +94,6 @@ Create a secret
 Open:
 
 http://jenkins.local
-
 
 ⸻
 
@@ -111,15 +108,15 @@ Or use password shown during provisioning.
 ⸻
 
 2. Initial setup
- • Install suggested plugins (recommended)
- • Create admin user
+- Install suggested plugins (recommended)
+- Create admin user
 
 ⸻
 
 3. Create job
- • Click New Item
- • Name: test-job
- • Type: Freestyle project
+- Click New Item
+- Name: test-job
+- Type: Freestyle project
 
 ⸻
 
@@ -129,17 +126,15 @@ Add:
 
 echo "Hello from Jenkins"
 
-
 ⸻
 
 5. Run job
- • Click Build Now
- • Open Console Output
+- Click Build Now
+- Open Console Output
 
 Expected result:
 
 Hello from Jenkins
-
 
 ⸻
 
@@ -149,31 +144,30 @@ Open:
 
 http://zabbix.local
 
-
 ⸻
 
 Initial setup
- • DB type → MySQL
- • DB name → zabbix
- • User → zabbix
- • Password → password
+- DB type → MySQL
+- DB name → zabbix
+- User → zabbix
+- Password → password
 
 ⸻
 
 Login
- • Username: Admin
- • Password: zabbix
+- Username: Admin
+- Password: zabbix
 
 ⸻
 
 Monitoring
 
 Zabbix monitors:
- • CPU usage
- • Memory usage
- • Disk usage
- • Jenkins status
- • Vault status
+- CPU usage
+- Memory usage
+- Disk usage
+- Jenkins status
+- Vault status
 
 Custom template is used for service monitoring.
 
@@ -186,46 +180,45 @@ Custom template is used for service monitoring.
 ⸻
 
 Widgets explanation
- • CPU → system load
- • Memory → RAM usage
- • Disk → storage usage
- • Jenkins → HTTP check (200 = UP)
- • Vault → service status
- • Triggers → active alerts
+- CPU → system load
+- Memory → RAM usage
+- Disk → storage usage
+- Jenkins → HTTP check (200 = UP)
+- Vault → service status
+- Triggers → active alerts
 
 ⸻
 
 🗄 Database Configuration
- • Database: zabbix
- • User: zabbix
- • Password: password
+- Database: zabbix
+- User: zabbix
+- Password: password
 
 Configured in:
 
 /etc/zabbix/zabbix_server.conf
-
 
 ⸻
 
 🚀 Provisioning
 
 Provisioning is automated using:
- • jenkins.sh
- • zabbix.sh
- • apache.sh
+- jenkins.sh
+- zabbix.sh
+- apache.sh
 
 Features:
- • Automatic setup
- • Database initialization
- • Configuration generation
- • Idempotent provisioning
+- Automatic setup
+- Database initialization
+- Configuration generation
+- Idempotent provisioning
 
 🧠 Summary
 
 This project demonstrates:
- • CI/CD → Jenkins
- • Secrets management → Vault
- • Monitoring → Zabbix
- • Reverse proxy setup
- • Infrastructure automation
+- CI/CD → Jenkins
+- Secrets management → Vault
+- Monitoring → Zabbix
+- Reverse proxy setup
+- Infrastructure automation
  
