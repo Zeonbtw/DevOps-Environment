@@ -1,0 +1,32 @@
+zabbix_export:
+  version: '7.0'
+  template_groups:
+    - uuid: 7df96b18c230490a9a0a9e2307226338
+      name: Templates
+  templates:
+    - uuid: 17b52b3db4964762872335bfb0192349
+      template: 'Custom zabbix template'
+      name: 'Custom zabbix template'
+      groups:
+        - name: Templates
+      items:
+        - uuid: e2d1459b6f1445559e0ce29274379bd8
+          name: 'Jenkins status'
+          key: jenkins.status
+          delay: 10s
+        - uuid: 9eb7b9db7fd34fb8b6758ae803012a37
+          name: 'Vault status'
+          key: 'service.status[vault]'
+          delay: 10s
+        - uuid: af4ad2b875b64e2887ecbc0c738f9e92
+          name: 'Zabbix server status'
+          key: 'service.status[zabbix-server]'
+          delay: 10s
+      valuemaps:
+        - uuid: dc614ea24deb4d7eacb1926c3c790950
+          name: Status
+          mappings:
+            - value: '0'
+              newvalue: DOWN
+            - value: '1'
+              newvalue: UP
