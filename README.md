@@ -181,7 +181,7 @@ Custom template is used for service monitoring.
 
 📸 Dashboard
 
-![Zabbix Dashboard](./images/Dashboard.png)
+![Zabbix Dashboard](./images/dashboard.png)
 
 ⸻
 
