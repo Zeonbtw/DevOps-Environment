@@ -34,13 +34,6 @@ echo 'UserParameter=service.status[*],systemctl is-active $1 | grep -c "^active"
 grep -q "UserParameter=jenkins.status" /etc/zabbix/zabbix_agentd.conf || \
 echo 'UserParameter=jenkins.status,curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8080/login | grep -c 200' >> /etc/zabbix/zabbix_agentd.conf
 
-rm -f /var/www/html/index.html
-cat > /var/www/html/index.php <<'EOF'
-<?php
-header("Location: /zabbix/");
-exit;
-EOF
-
 systemctl enable zabbix-server zabbix-agent apache2
 systemctl restart zabbix-server zabbix-agent apache2
 
