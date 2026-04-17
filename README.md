@@ -3,11 +3,11 @@
 This project sets up a local DevOps environment using Vagrant with integrated services and monitoring.
 
 The environment includes:
-• Jenkins (CI/CD)
-• Vault (secrets management)
-• Zabbix (monitoring)
-• Apache (reverse proxy)
-• MariaDB (database)
+- Jenkins (CI/CD)
+- Vault (secrets management)
+- Zabbix (monitoring)
+- Apache (reverse proxy)
+- MariaDB (database)
 
 ⸻
 
@@ -203,6 +203,8 @@ Configured in:
 🚀 Provisioning
 
 Provisioning is automated using:
+- base.sh
+- vault.sh
 - jenkins.sh
 - zabbix.sh
 - apache.sh
