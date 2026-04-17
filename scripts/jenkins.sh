@@ -1,21 +1,18 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Remove old container if exists
-docker rm -f jenkins 2>/dev/null || true
-docker volume rm jenkins_home 2>/dev/null || true
-
-# Create volume if not exists
-docker volume create jenkins_home >/dev/null 2>&1 || true
-
-# Run Jenkins
-docker run -d \
-  --name jenkins \
-  --restart unless-stopped \
-  -p 8080:8080 \
-  -p 50000:50000 \
-  -v jenkins_home:/var/jenkins_home \
-  jenkins/jenkins:lts-jdk21
+# if container exists just start
+if docker inspect jenkins >/dev/null 2>&1; then
+  docker start jenkins >/dev/null 2>&1 || true
+else
+  # if not, create with volume
+  docker run -d \
+    --name jenkins \
+    -p 8080:8080 \
+    -p 50000:50000 \
+    -v jenkins_home:/var/jenkins_home \
+    jenkins/jenkins:lts-jdk21 >/dev/null
+fi
 
 echo "Waiting for Jenkins to start..."
 
